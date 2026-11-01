@@ -185,6 +185,26 @@ function searchJobs(){
  document.getElementById("noResult").hidden=count!==0;
 }
 </script>
+ <script>
+const SUPABASE_URL = "https://mrqgkfolkphseywllftv.supabase.co";
+const SUPABASE_KEY = "sb_publishable_nX7sNRzUnG1vrttTS8H_JQ_02fNg6om";
+
+async function chargerOffres() {
+  const reponse = await fetch(
+    SUPABASE_URL + "/rest/v1/offres_emploi?select=*",
+    {
+      headers: {
+        apikey: SUPABASE_KEY
+      }
+    }
+  );
+
+  const offres = await reponse.json();
+  console.log("Offres JOPWORLD :", offres);
+}
+
+chargerOffres();
+ </script>
 </body>
                         </html>
                         
