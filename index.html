@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="JOPWORLD - Découvrez des offres d'emploi et des opportunités professionnelles dans le monde entier.">
+<title>JOPWORLD - Emploi International</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#17243a}
+header{background:#102b48;color:white;padding:18px 6%;display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.logo{font-size:27px;font-weight:900;letter-spacing:1px}
+.logo span{color:#f4bd4e}
+nav{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+nav a{color:white;text-decoration:none;font-size:14px}
+select,button,input{padding:12px;border-radius:8px;border:1px solid #ddd;font-size:15px}
+.hero{background:linear-gradient(120deg,#102b48,#17618a);color:white;text-align:center;padding:75px 18px}
+.hero h1{font-size:38px;margin:0 auto 15px;max-width:700px}
+.hero p{color:#d9e8f5;font-size:17px}
+.search{background:white;max-width:850px;margin:30px auto 0;padding:12px;border-radius:12px;display:flex;gap:10px;flex-wrap:wrap}
+.search input,.search select{flex:1;min-width:150px}
+.btn{background:#f2b83f;color:#17243a;border:0;font-weight:bold;cursor:pointer}
+section{padding:42px 6%;max-width:1200px;margin:auto}
+h2{font-size:27px}
+.countries,.jobs,.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:15px}
+.country,.job,.feature{background:white;padding:20px;border-radius:12px;box-shadow:0 3px 15px #142d4810}
+.country{font-weight:bold;text-align:center}
+.flag{font-size:30px;display:block;margin-bottom:9px}
+.job h3{margin:8px 0}
+.job p,.feature p{color:#667085;font-size:14px;line-height:1.5}
+.tag{display:inline-block;background:#e8f2ff;color:#16538a;padding:6px 9px;border-radius:20px;font-size:12px}
+.job button,.action{background:#123e63;color:white;border:0;padding:11px 15px;border-radius:7px;cursor:pointer;margin-top:8px}
+.banner{background:#e9edf3;border:1px dashed #9aa7b7;text-align:center;padding:22px;color:#64748b;border-radius:10px}
+.cta{background:#102b48;color:white;text-align:center;padding:40px 18px;border-radius:14px}
+.cta a{display:inline-block;background:#f2b83f;color:#17243a;padding:13px 18px;border-radius:8px;text-decoration:none;font-weight:bold;margin:8px}
+footer{background:#0b1c30;color:white;text-align:center;padding:30px 15px}
+footer a{color:#f2bd50;margin:8px}
+@media(max-width:600px){.hero h1{font-size:29px}nav{gap:12px}.search{display:grid}}
+</style>
+</head>
+<body>
+<header>
+ <div class="logo">JOP<span>WORLD</span></div>
+ <nav>
+  <a href="#jobs" data-i="offers">Offres d'emploi</a>
+  <a href="#countries" data-i="countries">Pays</a>
+  <a href="#recruiters" data-i="recruiters">Recruteurs</a>
+  <select id="language" aria-label="Choose language">
+   <option value="fr">🇫🇷 Français</option>
+   <option value="en">🇬🇧 English</option>
+   <option value="es">🇪🇸 Español</option>
+   <option value="pt">🇵🇹 Português</option>
+   <option value="de">🇩🇪 Deutsch</option>
+   <option value="ar">🇸🇦 العربية</option>
+   <option value="wo">🇸🇳 Wolof</option>
+   <option value="it">🇮🇹 Italiano</option>
+   <option value="nl">🇳🇱 Nederlands</option>
+   <option value="pl">🇵🇱 Polski</option>
+   <option value="no">🇳🇴 Norsk</option>
+   <option value="da">🇩🇰 Dansk</option>
+   <option value="sv">🇸🇪 Svenska</option>
+   <option value="tr">🇹🇷 Türkçe</option>
+   <option value="zh">🇨🇳 中文</option>
+   <option value="ru">🇷🇺 Русский</option>
+   <option value="ja">🇯🇵 日本語</option>
+   <option value="ko">🇰🇷 한국어</option>
+  </select>
+ </nav>
+</header>
+
+<div class="hero">
+ <h1 data-i="headline">Trouvez votre prochain emploi dans le monde</h1>
+ <p data-i="sub">Des opportunités professionnelles aux quatre coins du monde.</p>
+ <div class="search">
+  <input id="keyword" placeholder="Métier recherché..." data-ph="keyword">
+  <select id="country">
+   <option value="">Tous les pays</option>
+   <option>Canada</option><option>États-Unis</option>
+   <option>France</option><option>Belgique</option>
+   <option>Espagne</option><option>Portugal</option>
+   <option>Royaume-Uni</option><option>Pologne</option>
+   <option>Norvège</option><option>Danemark</option>
+  </select>
+  <button class="btn" onclick="searchJobs()" data-i="search">Rechercher</button>
+ </div>
+</div>
+
+<section id="countries">
+ <h2 data-i="destinations">🌍 Nos destinations</h2>
+ <div class="countries">
+  <div class="country"><span class="flag">🇺🇸</span>États-Unis</div>
+  <div class="country"><span class="flag">🇨🇦</span>Canada</div>
+  <div class="country"><span class="flag">🇫🇷</span>France</div>
+  <div class="country"><span class="flag">🇧🇪</span>Belgique</div>
+  <div class="country"><span class="flag">🇵🇹</span>Portugal</div>
+  <div class="country"><span class="flag">🇪🇸</span>Espagne</div>
+  <div class="country"><span class="flag">🇬🇧</span>Royaume-Uni</div>
+  <div class="country"><span class="flag">🇵🇱</span>Pologne</div>
+  <div class="country"><span class="flag">🇳🇴</span>Norvège</div>
+  <div class="country"><span class="flag">🇩🇰</span>Danemark</div>
+ </div>
+</section>
+
+<section>
+ <div class="banner">ESPACE PUBLICITAIRE — JOPWORLD</div>
+</section>
+
+<section id="jobs">
+ <h2 data-i="latest">💼 Offres d'emploi</h2>
+ <p data-i="demo">Exemples de présentation — aucune de ces offres n'est actuellement une offre vérifiée.</p>
+ <div class="jobs" id="jobList">
+  <article class="job" data-country="Canada" data-title="Agriculture">
+   <span class="tag">Canada</span><h3>Aide agricole</h3>
+   <p>Exemple de poste saisonnier en agriculture.</p>
+   <button onclick="alert('Les candidatures seront ouvertes après la configuration du système.')">En savoir plus</button>
+  </article>
+  <article class="job" data-country="France" data-title="Restauration">
+   <span class="tag">France</span><h3>Employé de restauration</h3>
+   <p>Exemple de poste dans la restauration.</p>
+   <button onclick="alert('Les candidatures seront ouvertes après la configuration du système.')">En savoir plus</button>
+  </article>
+  <article class="job" data-country="Espagne" data-title="Bâtiment">
+   <span class="tag">Espagne</span><h3>Ouvrier du bâtiment</h3>
+   <p>Exemple de poste dans le secteur du bâtiment.</p>
+   <button onclick="alert('Les candidatures seront ouvertes après la configuration du système.')">En savoir plus</button>
+  </article>
+ </div>
+ <p id="noResult" hidden>Aucune offre ne correspond à cette recherche.</p>
+</section>
+
+<section class="features">
+ <div class="feature"><h3>👤 Candidats</h3><p>Un espace pour consulter les offres et préparer vos candidatures.</p></div>
+ <div class="feature"><h3>🏢 Recruteurs</h3><p>Un espace pour présenter votre entreprise et proposer des emplois.</p></div>
+ <div class="feature"><h3>🌐 Multilingue</h3><p>Une plateforme pensée pour des utilisateurs internationaux.</p></div>
+</section>
+
+<section id="recruiters">
+ <div class="cta">
+  <h2>Vous êtes une entreprise ?</h2>
+  <p>Rejoignez JOPWORLD et préparez la publication de vos offres.</p>
+  <a href="mailto:contact@jopworld.com">Contacter JOPWORLD</a>
+ </div>
+</section>
+
+<footer>
+ <div class="logo">JOP<span>WORLD</span></div>
+ <p>La porte vers les opportunités professionnelles internationales.</p>
+ <p>© 2026 JOPWORLD — Tous droits réservés.</p>
+ <p>Les offres devront être vérifiées avant publication.</p>
+</footer>
+
+<script>
+const translations={
+fr:{offers:"Offres d'emploi",countries:"Pays",recruiters:"Recruteurs",headline:"Trouvez votre prochain emploi dans le monde",sub:"Des opportunités professionnelles aux quatre coins du monde.",search:"Rechercher",destinations:"🌍 Nos destinations",latest:"💼 Offres d'emploi",demo:"Exemples de présentation — aucune de ces offres n'est actuellement une offre vérifiée.",keyword:"Métier recherché..."},
+en:{offers:"Jobs",countries:"Countries",recruiters:"Employers",headline:"Find your next job around the world",sub:"Discover career opportunities across the globe.",search:"Search",destinations:"🌍 Our destinations",latest:"💼 Job listings",demo:"Sample listings — none of these jobs is currently verified.",keyword:"Job title..."},
+es:{offers:"Empleos",countries:"Países",recruiters:"Empresas",headline:"Encuentra tu próximo empleo en el mundo",sub:"Descubre oportunidades profesionales internacionales.",search:"Buscar",destinations:"🌍 Destinos",latest:"💼 Ofertas de empleo",demo:"Ejemplos — ninguna oferta está verificada actualmente.",keyword:"Puesto de trabajo..."},
+pt:{offers:"Empregos",countries:"Países",recruiters:"Empresas",headline:"Encontre o seu próximo emprego no mundo",sub:"Descubra oportunidades profissionais internacionais.",search:"Pesquisar",destinations:"🌍 Destinos",latest:"💼 Ofertas de emprego",demo:"Exemplos — nenhuma oferta está verificada atualmente.",keyword:"Profissão..."},
+de:{offers:"Stellenangebote",countries:"Länder",recruiters:"Arbeitgeber",headline:"Finden Sie Ihren nächsten Job weltweit",sub:"Entdecken Sie internationale Karrieremöglichkeiten.",search:"Suchen",destinations:"🌍 Reiseziele",latest:"💼 Stellenangebote",demo:"Beispiele — derzeit ist keine dieser Stellen verifiziert.",keyword:"Berufsbezeichnung..."},
+ar:{offers:"الوظائف",countries:"الدول",recruiters:"أصحاب العمل",headline:"اعثر على وظيفتك القادمة حول العالم",sub:"اكتشف فرص العمل الدولية.",search:"بحث",destinations:"🌍 وجهاتنا",latest:"💼 فرص العمل",demo:"أمثلة — لم يتم التحقق من هذه الوظائف بعد.",keyword:"المسمى الوظيفي..."}
+};
+document.getElementById("language").addEventListener("change",e=>{
+ const lang=e.target.value;
+ const t=translations[lang]||translations.fr;
+ document.documentElement.lang=lang;
+ document.querySelectorAll("[data-i]").forEach(el=>{
+  const key=el.dataset.i;
+  if(t[key])el.textContent=t[key];
+ });
+ document.querySelectorAll("[data-ph]").forEach(el=>{
+  const key=el.dataset.ph;
+  if(t[key])el.placeholder=t[key];
+ });
+});
+function searchJobs(){
+ const q=document.getElementById("keyword").value.toLowerCase();
+ const c=document.getElementById("country").value;
+ let count=0;
+ document.querySelectorAll(".job").forEach(job=>{
+  const match=job.dataset.title.toLowerCase().includes(q);
+  const country=!c||job.dataset.country===c;
+  job.hidden=!(match&&country);
+  if(!job.hidden)count++;
+ });
+ document.getElementById("noResult").hidden=count!==0;
+}
+</script>
+</body>
+                        </html>
+                        
