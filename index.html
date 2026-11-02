@@ -200,7 +200,60 @@ async function chargerOffres() {
   );
 
   const offres = await reponse.json();
-  console.log("Offres JOPWORLD :", offres);
+ console.log("Offres JOPWORLD :", offres);
+ 
+if (Array.isArray(offres)) {
+  const liste = document.getElementById("jobList");
+  liste.replaceChildren();
+
+  const publiees = offres.filter(o =>
+    ["publie", "publié", "publiée", "published", "active"]
+      .includes((o.statut || "").toLowerCase().trim())
+  );
+
+  publiees.forEach(o => {
+    const carte = document.createElement("article");
+    carte.className = "job";
+    carte.dataset.country = o.pays || "";
+    carte.dataset.title = o.titre || "";
+
+    const pays = document.createElement("span");
+    pays.className = "tag";
+    pays.textContent = o.pays || "International";
+
+    const titre = document.createElement("h3");
+    titre.textContent = o.titre || "Offre d'emploi";
+
+    const description = document.createElement("p");
+    description.textContent = o.description || "";
+
+    carte.append(pays, titre, description);
+
+    if (o.lien_candidature) {
+      try {
+        const url = new URL(o.lien_candidature);
+        if (url.protocol === "https:") {
+          const lien = document.createElement("a");
+          lien.href = url.href;
+          lien.textContent = "Postuler";
+          lien.target = "_blank";
+          lien.rel = "noopener noreferrer";
+          carte.append(lien);
+        }
+      } catch (e) {
+        console.warn("Lien invalide");
+      }
+    }
+
+    liste.append(carte);
+  });
+
+  document.querySelector('[data-i="demo"]').textContent =
+    publiees.length
+      ? "Offres d'emploi publiées"
+      : "Aucune offre publiée pour le moment.";
+}
+ 
 }
 
 chargerOffres();
